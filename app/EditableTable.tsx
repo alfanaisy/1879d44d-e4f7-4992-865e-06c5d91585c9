@@ -61,7 +61,6 @@ const EditableTable = () => {
     direction: 'ascending' | 'descending';
   } | null>(null);
 
-  // State to manage the newly added row
   const [newRow, setNewRow] = useState<TableRow | null>(null);
   const [isAddingRow, setIsAddingRow] = useState(false);
 
@@ -85,11 +84,10 @@ const EditableTable = () => {
   const onSubmit = (formData: { data: TableRow[] }) => {
     const updatedData = formData.data;
 
-    // If there is a new row being added, commit it to the table
     if (newRow) {
       setSortedData([...sortedData, newRow]);
-      setNewRow(null); // Reset the new row
-      setIsAddingRow(false); // Enable adding another new row
+      setNewRow(null);
+      setIsAddingRow(false);
     }
 
     console.log('Saved Data:', updatedData);
@@ -122,7 +120,6 @@ const EditableTable = () => {
     setSortedData(sortedArray);
   };
 
-  // Function to handle adding a new row
   const handleAddNewRow = () => {
     if (!isAddingRow) {
       const newRowData = {
