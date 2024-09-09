@@ -135,9 +135,15 @@ const EditableTable = () => {
     }
   };
 
+  const isEmailUnique = (email: string, rowIndex: number) => {
+    return !sortedData.some(
+      (row, index) => row.email === email && index !== rowIndex
+    );
+  };
+
   return (
     <div className="relative overflow-x-auto flex flex-col">
-      <div className="self-end space-x-2">
+      <div className="self-end space-x-2 mb-2">
         <Button onClick={handleReset} disabled={!isDirty && !isAddingRow}>
           <X />
         </Button>
@@ -220,6 +226,12 @@ const EditableTable = () => {
                                 message:
                                   'Phone number cannot exceed 20 characters',
                               }
+                            : undefined,
+                        validate:
+                          field === 'email'
+                            ? (value) =>
+                                isEmailUnique(value, sortedData.length) ||
+                                'Email must be unique'
                             : undefined,
                       }}
                       render={({ field: { value, onChange } }) => (
