@@ -1,4 +1,4 @@
-import EditableTable from './components/EditableTable';
+import EditableTable from './EditableTable';
 
 export default function Home() {
   return (
