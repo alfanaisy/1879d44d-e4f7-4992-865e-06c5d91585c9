@@ -114,8 +114,8 @@ const EditableTable = () => {
     setSortConfig({ key, direction });
     const sortedArray =
       direction === 'ascending'
-        ? sort(data).asc((d) => d[key])
-        : sort(data).desc((d) => d[key]);
+        ? sort(sortedData).asc((d) => d[key])
+        : sort(sortedData).desc((d) => d[key]);
 
     setSortedData(sortedArray);
   };
